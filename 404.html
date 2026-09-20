@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#0D0D12" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="description" content="InkMind — личная память о чтении" />
+    <title>InkMind</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+      html, body { margin: 0; min-height: 100%; background: #0d0d12; }
+      #boot-screen {
+        position: fixed;
+        inset: 0;
+        z-index: 80;
+        display: grid;
+        place-content: center;
+        justify-items: center;
+        gap: 20px;
+        background: #0d0d12;
+        color: #a9a4b2;
+        font: 400 1.15rem/1.3 "Cormorant Garamond", Georgia, serif;
+      }
+      #boot-screen svg { width: min(52vw, 188px); overflow: visible; }
+      #boot-screen path { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      #boot-screen .book-line { stroke: #b79b72; stroke-width: 1.7; }
+      #boot-screen .page-line { stroke: rgba(243, 239, 231, 0.3); stroke-width: 1.15; }
+      #boot-screen .current {
+        stroke: #d5b98c;
+        stroke-width: 2.3;
+        stroke-dasharray: 26 240;
+        filter: drop-shadow(0 0 7px rgba(213, 185, 140, 0.9));
+        animation: ink-current 2.2s linear infinite;
+      }
+      #boot-screen p { margin: 0; }
+      @keyframes ink-current { to { stroke-dashoffset: -266; } }
+    </style>
+    <script>
+      window.setTimeout(function () {
+        var screen = document.getElementById('boot-screen')
+        if (!screen) return
+        var label = screen.querySelector('p')
+        if (label) label.textContent = 'Долгая загрузка. Проверьте сеть и откройте Mini App ещё раз.'
+      }, 12000)
+    </script>
+    <script type="module" crossorigin src="/inkmind-app/assets/index-D0CgZz1b.js"></script>
+    <link rel="stylesheet" crossorigin href="/inkmind-app/assets/index-PDlP6NTK.css">
+  </head>
+  <body>
+    <div id="boot-screen">
+      <svg viewBox="0 0 200 148" aria-hidden="true">
+        <path class="book-line" d="M100 30L38 16c-12-3-20 6-18 18l8 82c2 12 12 16 22 12L100 108" />
+        <path class="book-line" d="M100 30l62-14c12-3 20 6 18 18l-8 82c-2 12-12 16-22 12L100 108" />
+        <path class="book-line" d="M100 30v78" />
+        <path class="page-line" d="M44 46l42 8M46 62l40 7M48 78l36 6M52 92l28 5" />
+        <path class="page-line" d="M156 46l-42 8M154 62l-40 7M152 78l-36 6M148 92l-28 5" />
+        <path class="current" d="M100 30L38 16c-12-3-20 6-18 18l8 82c2 12 12 16 22 12L100 108l62 20c10 4 20 0 22-12l8-82c2-12-6-21-18-18L100 30z" />
+      </svg>
+      <p>InkMind открывает полку…</p>
+    </div>
+    <div id="app"></div>
+  </body>
+</html>
